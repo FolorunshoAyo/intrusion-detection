@@ -28,7 +28,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form id="loginFrm" method="POST">
+      <form id="loginFrm" method="POST" action="server_scripts/login-backend.php">
         <div class="input-group mb-3">
           <input type="text" name="matricno" class="form-control" placeholder="MatricNo">
           <div class="input-group-append">
