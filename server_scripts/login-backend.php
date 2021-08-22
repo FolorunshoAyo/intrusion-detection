@@ -28,10 +28,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
       //using username as my session parser
       $_SESSION['matricno'] = $MatricNo;
       $logs->successLog($MatricNo, $Password);
-      echo json_encode(array('success' => 1));
+      echo "<script>alert('login sucessfull');location.href='StudentPortal'</script>";
 		}else{
       $logs->failedLog($MatricNo, $Password);
-           echo json_encode(array('success' => 0));
+      echo "<script>alert('invalid login credentials, please try again');location.href='../login.php';</script>";
 		}
 	
 }
