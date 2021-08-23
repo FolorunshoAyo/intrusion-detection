@@ -7,120 +7,51 @@ if(!isset($_SESSION['Username']))
   header("Location: ../login.php");
 }
 $Username = $_SESSION['Username'];
-$sql = "SELECT * FROM superadmin WHERE Username = '$Username'";
+$sql = "SELECT * FROM admin WHERE username = '$Username'";
 $result = mysqli_query($conn, $sql);
-
+$data = mysqli_fetch_assoc($result);
 ?>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php" class="nav-link">Home</a></li>
-  
-    </ul>
+ <!-- Navbar -->
+ <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index.php" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li>
+      </ul>
 
-
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <i class="fas fa-power-off"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
+        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+          <a href="../login.php" class="dropdown-item">
+            <i class="fa fa-sign-out-alt mr-2"></i> <b>logout</b>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
       </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+            <i class="fas fa-th-large"></i>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-            class="fas fa-th-large"></i></a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -146,7 +77,19 @@ $result = mysqli_query($conn, $sql);
        <!-- Sidebar Menu -->
        <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <!-- nav item for student -->
+         <!-- nav item for student -->
+           <li class="nav-item">
+                <a href="index.php" class="nav-link">
+                  <i class="far fa-home nav-icon"></i>
+                  <p>Home</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin-profile.php" class="nav-link">
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Admin Profile</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="students.php" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
@@ -228,161 +171,175 @@ $result = mysqli_query($conn, $sql);
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
-           
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row mb-4">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box shadow-lg">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
+                <div class="info-box-content">
+                  <span class="info-box-text">Total members</span>
+                  <span class="info-box-number">
+                    <?php 
+                  $query = mysqli_query($conn, "SELECT COUNT(*) FROM admin");
+                  $result = mysqli_fetch_assoc($query);
+                  echo $result['COUNT(*)'];
+                  ?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3 shadow-lg">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Username</span>
+                  <span class="info-box-number">
+                    <?php echo $_SESSION['username'];?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3 shadow-lg">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-book"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Login attempts(s)</span>
+                  <span class="info-box-number">
+                    <?php echo 5;?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3 shadow-lg" title="
+            <?php
+            $query = mysqli_query($conn, "SELECT * FROM users WHERE id = $id");
+             $fetch_data = mysqli_fetch_assoc($query);
+             echo $fetch_data['programme'] . "."; 
+             ?>
+            ">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text"> Successful Logins</span>
+                  <span class="info-box-number">
+                    <?php echo 7;?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+          <div class="card">
               <div class="card-header">
-                <h5 class="card-title"><?php echo $_SESSION['Username']?> Information</h5>
+                <h3 class="card-title text-primary">NOTIFICATION</h3>
+              </div>
+              <!-- ./card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Title</th>
+                      <th>Notice</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-widget="expandable-table" aria-expanded="false">
+                      <td>1</td>
+                      <td>Welcoming new Students</td>
+                      <td>11-7-2014</td>
+                    </tr>
+                    <tr class="expandable-body">
+                      <td colspan="5">
+                        <p>
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr data-widget="expandable-table" aria-expanded="true">
+                      <td>2</td>
+                      <td>Resumption Date</td>
+                      <td>11-7-2014</td>
+                    </tr>
+                    <tr class="expandable-body">
+                      <td colspan="5">
+                        <p>
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          <!-- Default box -->
+          <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Announcements</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                   </button>
-                  <!-- <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-wrench"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <a href="#" class="dropdown-item">Action</a>
-                      <a href="#" class="dropdown-item">Another action</a>
-                      <a href="#" class="dropdown-item">Something else here</a>
-                      <a class="dropdown-divider"></a>
-                      <a href="#" class="dropdown-item">Separated link</a>
-                    </div>
-                  </div> -->
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
-                <div class="row">
-                  <div class="col-md-8">
-                  
-                  <div class="card-body">
-                  <div class="card-body">
-                  <div class="image">
-     
-                
-                  <?php
-                  $query = "SELECT * FROM admin WHERE username = '$Username'";
-                      $show = mysqli_query($conn, $query);
-                    while($Row = mysqli_fetch_array($show))
-                    {
-                      ?>
-          
-            
-                      <form method="POST" enctype='multipart/form-data'>
-                      <img  src="../images-files/doctor.jpg" style="width:220px;height:250px; border:5px solid"  alt="User Image"><br><br>
-                      <label for="adminID">Admin ID</label>
-                      <input type="text" class="form-control" name="AdminID" value="<?php echo $Row['AdminID']?>" id="adminID"/><br>
-                      <label>Firstname</label>
-                        <input type="text" class="form-control" name="Firstname" value="<?php echo $Row['firstname']?>"/><br>
-                       
-                          <label>Lastname</label>
-                          <input type="text" class="form-control" name="Lastname" value="<?php echo $Row['lastname']?>"/>
-                        <br>
-                       
-                           <label>Email</label>
-                      <input type="email" class="form-control" name="Email" value="<?php echo $Row['email']?>"/><br>
-                      
-                       
-                          <label>Phone</label>
-                          <input type="text" class="form-control" name="PhoneNo" value="<?php echo $Row['phoneno']?>"/>
-                        <br>
-                       
-
-                                                   
-                              <!-- <label>Upload Image</label>
-                            <input type="file" class="form-control" name="images" value="<?php echo $Row['images']?> "required> -->
-   
-                            <br>
-                         
-                        <input class="btn btn-warning" type="submit" name="update" value="UPDATE PROFILE">
-                        <?php
-
-                    }
-                    ?>
+                <ol style="list-style-position: outside;">
+                  <li>first number</li>
+                  <li>second number</li>
+                  <li>third number</li>
+                  <li>fourth number</li>
+                  <li>fifth number</li>
+                </ol>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                2020/2021 session
+              </div>
+              <!-- /.card-footer-->
             </div>
-            <!-- /.card-body -->
-          </div>
+
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  </div>
+  <!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
         
-             <!-- php code to update staff profle -->
-             <?php
-             
-              if(isset($_POST['update']))
-              {
-                try{
-
-                 
-                  $target_dir = "../../images-files/";
-                  $Image = $target_dir . basename($_FILES["images"]["name"]);
-                  $uploadOk = 1;
-                  $imageFileType = pathinfo($Image,PATHINFO_EXTENSION);
-                  //checking if the upload file is an image
-                 $check = getimagesize($_FILES["images"]["tmp_name"]);
-                 if($check !== false) {
-                  echo "File is an image - " . $check["mime"] . ".";
-                  $uploadOk = 1;
-                  } else {
-                  echo "File is not an image.";
-                  $uploadOk = 0;
-                  }
-                  // Check file size
-                  if ($_FILES["images"]["size"] > 5000000) {
-                    echo "Sorry, your file is too large.";
-                    $uploadOk = 0;
-                  }
-                  // Allow certain file formats
-                  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                  && $imageFileType != "gif" ) {
-                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                    $uploadOk = 0;
-                  }
-                  // Check if $uploadOk is set to 0 by an error
-                  if ($uploadOk == 0) {
-                    echo "Sorry, your file was not uploaded.";
-                  // if everything is ok, try to upload file
-                  } else {
-                    if (move_uploaded_file($_FILES["images"]["tmp_name"], $Image)) {
-                        echo "The file ". basename( $_FILES["images"]["name"]). " has been uploaded.";
-                    } else {
-                        echo "Sorry, there was an error uploading your file.";
-                    }
-
-                  //sql query to update table olosho
-                  $updateQuery = "UPDATE superadmin SET images = '$Image' WHERE Username = '$Username'";
-                  $UpdateResult = mysqli_query($conn, $updateQuery);
-                  if($UpdateResult)
-                  {
-                    echo "<script>alert('Data updated successfully'); document.location.href='profile.php'</script>";
-
-                  }
-                  else{
-                    echo "<script>alert('Error in update');</script>";
-                  }
-                
-                }
-                }
-                catch(Exception $e)
-                {
-                  echo "Message".$e->getMessage();
-                }
-              }
-             ?>
+            
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

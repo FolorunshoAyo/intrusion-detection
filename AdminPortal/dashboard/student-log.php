@@ -180,6 +180,18 @@ $num_of_rows = mysqli_num_rows($query);
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- nav item for student -->
               <li class="nav-item">
+                <a href="index.php.php" class="nav-link">
+                  <i class="far fa-home nav-icon"></i>
+                  <p>Home</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="students.php" class="nav-link">
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Admin Profile</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="students.php" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>Manage Student</p>
