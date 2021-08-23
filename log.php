@@ -171,7 +171,7 @@ class Log extends Dbconfig {
         
         $malicious_attempts += $log_record['malicious_attempts'];
 
-        mysqli_query($this->dbConnect, "INSERT INTO ".$this->table2." VALUES('$ip_address', '$date', '$error_message', '".$log_record['successful_login_attempts']."', '".$log_record['failed_login_attempts']."', $malicious_attempts)");
+        mysqli_query($this->dbConnect, "INSERT INTO ".$this->table2." VALUES('$ip_address', '$date', '$error_message', '".$log_record['successfull_login_attempts']."', '".$log_record['failed_login_attempts']."', $malicious_attempts)");
 
         $sqlQuery1 = "UPDATE logs SET info = '$error_message' WHERE client_address = '$ip_address'";
         mysqli_query($this->dbConnect, $sqlQuery1);

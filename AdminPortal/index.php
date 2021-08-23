@@ -14,11 +14,18 @@ if(isset($_POST['submit']))
     // selecting data from database
 		$sql = "SELECT * FROM admin WHERE username = '$Username' and passkey = '$Password'";
     $result = mysqli_query($conn, $sql);
+    $log_results1 = mysqli_query($conn, "SELECT SUM(login_attempts) as total_login_attempts FROM logs"); 
+    $log_results2 = mysqli_query($conn, "SELECT SUM(successfull_logins) as total_successful_attempts FROM logs");
     $Row = mysqli_num_rows($result);
+
+    $log_results_data1 = mysqli_fetch_assoc($log_results1);
+    $log_results_data2 = mysqli_fetch_assoc($log_results2);
 		if($Row === 1)
 		{
       //using username as my session parser
       $_SESSION['Username'] = $Username;
+      $_SESSION['total_login_attempts'] = $log_results_data1['total_login_attempts'];
+      $_SESSION['total_successful_attempts'] = $log_results_data2['total_successful_attempts'];
 			echo "<script>alert('You are Login successfully');window.location='dashboard';</script>";
 		}else{
 			echo "<script>alert('Invalid Login, Please check your login credentials and try again');</script>";

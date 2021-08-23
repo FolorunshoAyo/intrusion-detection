@@ -146,16 +146,16 @@ $result = mysqli_query($conn, $sql);
        <!-- Sidebar Menu -->
        <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <!-- nav item for student -->
-    <li class="nav-item">
+         <!-- nav item for student -->
+           <li class="nav-item">
                 <a href="index.php" class="nav-link">
-                  <i class="far fa-home nav-icon"></i>
+                  <i class="fas fa-home nav-icon"></i>
                   <p>Home</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="admin-profile.php" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
+                  <i class="fas fa-user nav-icon"></i>
                   <p>Admin Profile</p>
                 </a>
               </li>

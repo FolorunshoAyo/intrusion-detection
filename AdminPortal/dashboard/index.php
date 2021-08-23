@@ -7,9 +7,13 @@ if(!isset($_SESSION['Username']))
   header("Location: ../login.php");
 }
 $Username = $_SESSION['Username'];
-$sql = "SELECT * FROM admin WHERE username = '$Username'";
-$result = mysqli_query($conn, $sql);
-$data = mysqli_fetch_assoc($result);
+$total_login_attempts = $_SESSION['total_login_attempts'];
+$total_successful_attempts = $_SESSION['total_successful_attempts'];
+
+if($total_login_attempts == 0 && $total_successful_attempts == 0){
+  $total_login_attempts = $total_successful_attempts = "0";
+}
+
 ?>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -35,7 +39,7 @@ $data = mysqli_fetch_assoc($result);
           <i class="fas fa-power-off"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-          <a href="../login.php" class="dropdown-item">
+          <a href="logout.php" class="dropdown-item">
             <i class="fa fa-sign-out-alt mr-2"></i> <b>logout</b>
           </a>
       </li>
@@ -80,13 +84,13 @@ $data = mysqli_fetch_assoc($result);
          <!-- nav item for student -->
            <li class="nav-item">
                 <a href="index.php" class="nav-link">
-                  <i class="far fa-home nav-icon"></i>
+                  <i class="fas fa-home nav-icon"></i>
                   <p>Home</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="admin-profile.php" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
+                  <i class="fas fa-user nav-icon"></i>
                   <p>Admin Profile</p>
                 </a>
               </li>
@@ -202,7 +206,7 @@ $data = mysqli_fetch_assoc($result);
                 <div class="info-box-content">
                   <span class="info-box-text">Username</span>
                   <span class="info-box-number">
-                    <?php echo $_SESSION['username'];?>
+                    <?php echo $_SESSION['Username'];?>
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -216,12 +220,12 @@ $data = mysqli_fetch_assoc($result);
 
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3 shadow-lg">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-book"></i></span>
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-power-off"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Login attempts(s)</span>
                   <span class="info-box-number">
-                    <?php echo 5;?>
+                    <?php echo $total_login_attempts;?>
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -230,19 +234,13 @@ $data = mysqli_fetch_assoc($result);
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3 shadow-lg" title="
-            <?php
-            $query = mysqli_query($conn, "SELECT * FROM users WHERE id = $id");
-             $fetch_data = mysqli_fetch_assoc($query);
-             echo $fetch_data['programme'] . "."; 
-             ?>
-            ">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
+              <div class="info-box mb-3 shadow-lg">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text"> Successful Logins</span>
                   <span class="info-box-number">
-                    <?php echo 7;?>
+                    <?php echo $total_successful_attempts; ?>
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -366,7 +364,7 @@ $data = mysqli_fetch_assoc($result);
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="dist/js/demo.js"></script>

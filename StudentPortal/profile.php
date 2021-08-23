@@ -146,7 +146,7 @@ include('sidebar-img.php');
                             <input type="file" class="form-control" name="images" value="<?php echo $Row['images']?> "required>
    
                             <br>
-                         <input type="hidden" name="info" value="user tried to tamper with information" class="info">
+                         <input type="hidden" name="info" value="User tried to tamper with information." class="info">
                         <input class="btn btn-warning" type="submit" name="update" value="UPDATE PROFILE">
                         <?php
 
