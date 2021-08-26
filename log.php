@@ -1,5 +1,5 @@
 <?php
-include('getbrowser.php');
+require('getbrowser.php');
 date_default_timezone_set("Africa/Lagos");
 
  class DbConfig {
@@ -7,6 +7,7 @@ date_default_timezone_set("Africa/Lagos");
     protected $userName;
     protected $password;
     protected $dbName;
+
     function dbConfig() {
         $this -> serverName = 'localhost';
         $this -> userName = 'root';
